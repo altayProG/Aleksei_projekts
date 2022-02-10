@@ -1,38 +1,65 @@
 ﻿#include <iostream>
 #include <string>
+#include <cstring>
 #include <fstream>
 #include <Windows.h>
+#include "Header.h"
 using namespace std;
 
-class FULLNAME
+class INTERFULLNAME
 {
 
-public:
+private:
 
     string name = " ";
     long long pone_number = 0;
 
-    FULLNAME() {}
+public:
+    INTERFULLNAME() {
 
-    FULLNAME(string name, long long pone_number) {
+        cout << "Inter Name and Surname: \n";
+        cin >> name;
+        cout << "Enter pone number (eleven signs): \n";
+        cin >> pone_number;
+        
+        if (sizeof(pone_number) != 8){
 
-        this->name = name;
-        this->pone_number = pone_number;
+            cout << "It's number error!\n";
+            cout << "Do you want to enter number from beginning?(yes(1) and no(2))\n";
+
+            int yes_no = 0;
+            cin >> yes_no;
+
+            switch (yes_no)
+            {
+            case 1:
+                INTERFULLNAME();
+            case 2:
+                break;
+            }
+            
+            
+        }
     }
 
     void Print() {
 
         cout << "name: " << name << endl << "Pone number: " << pone_number << endl;
     }
+
+
 };
 
-class WRITE :public FULLNAME
+class WRITE
 {
+private:
+
+    string file_txt = "full_info.txt";
 
 public:
 
     WRITE() {
-        string file_txt = "full_info.txt";
+        //string file_txt = "full_info.txt";
         ofstream fout;
 
         fout.open(file_txt, ofstream::app);
@@ -42,7 +69,7 @@ public:
         }
         else {
             cout << "Фаил успешно открыт!\n";
-            fout.write((char*)&fullname, sizeof(FULLNAME));
+            //fout.write((char*)&fullname, sizeof(INTERFULLNAME));
         }
         fout.close();
     }
@@ -53,14 +80,11 @@ int main()
     setlocale(0, "");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-
-    WRITE write;
-    long long a = 0;
-    string f;
-    cin >> f >> a;
-    FULLNAME fullname(f, a);
+    
+    INTERFULLNAME fullname;
     fullname.Print();
-
+    WRITE write;
+    
     return 0;
 
 }
