@@ -3,7 +3,7 @@
 #include <cstring>
 #include <fstream>
 #include <Windows.h>
-#include "Header.h"
+//#include "Header.h"
 using namespace std;
 
 class INTERFULLNAME
@@ -15,14 +15,24 @@ private:
     long long pone_number = 0;
 
 public:
+
+
+
+    INTERFULLNAME(string name, long long pone_number) {
+
+        this->name = name;
+        this->pone_number = pone_number;
+
+    }
+
     INTERFULLNAME() {
 
         cout << "Inter Name and Surname: \n";
         cin >> name;
         cout << "Enter pone number (eleven signs): \n";
         cin >> pone_number;
-        
-        if (sizeof(pone_number) != 8){
+
+        if (sizeof(pone_number) != 8) {
 
             cout << "It's number error!\n";
             cout << "Do you want to enter number from beginning?(yes(1) and no(2))\n";
@@ -37,8 +47,8 @@ public:
             case 2:
                 break;
             }
-            
-            
+
+
         }
     }
 
@@ -47,11 +57,9 @@ public:
         cout << "name: " << name << endl << "Pone number: " << pone_number << endl;
     }
 
-
 };
 
-class WRITE
-{
+class WRITE {
 private:
 
     string file_txt = "full_info.txt";
@@ -59,7 +67,8 @@ private:
 public:
 
     WRITE() {
-        //string file_txt = "full_info.txt";
+
+        string file_txt = "full_info.txt";
         ofstream fout;
 
         fout.open(file_txt, ofstream::app);
@@ -69,11 +78,12 @@ public:
         }
         else {
             cout << "Фаил успешно открыт!\n";
-            //fout.write((char*)&fullname, sizeof(INTERFULLNAME));
+            fout.write((char*)&file_txt, sizeof(INTERFULLNAME));
         }
         fout.close();
     }
 };
+
 
 int main()
 {
@@ -84,7 +94,13 @@ int main()
     INTERFULLNAME fullname;
     fullname.Print();
     WRITE write;
-    
+
+    //const int size = 3;
+
+    //INTERFULLNAME arr[size];
+    //arr[0] = fullname;
+    //WRITE write;//(arr[size]);
+ 
     return 0;
 
 }

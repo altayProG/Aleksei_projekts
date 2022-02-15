@@ -1,2 +1,4 @@
-#pragma once
+#ifndef Header
+#define Header
 
+#endif
