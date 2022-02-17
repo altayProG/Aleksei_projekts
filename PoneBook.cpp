@@ -1,55 +1,32 @@
 ﻿#include <iostream>
 #include <string>
-#include <cstring>
+//#include <cstring>
 #include <fstream>
 #include <Windows.h>
 //#include "Header.h"
 using namespace std;
 
-class INTERFULLNAME
+class InterFullName
 {
 
 private:
 
-    string name = " ";
-    long long pone_number = 0;
+    string name;
+    long long pone_number;
 
 public:
+    
 
-
-
-    INTERFULLNAME(string name, long long pone_number) {
-
-        this->name = name;
-        this->pone_number = pone_number;
-
-    }
-
-    INTERFULLNAME() {
+    InterFullName() {
 
         cout << "Inter Name and Surname: \n";
         cin >> name;
+        cin.ignore(32767, '\n');
         cout << "Enter pone number (eleven signs): \n";
         cin >> pone_number;
-
-        if (sizeof(pone_number) != 8) {
-
-            cout << "It's number error!\n";
-            cout << "Do you want to enter number from beginning?(yes(1) and no(2))\n";
-
-            int yes_no = 0;
-            cin >> yes_no;
-
-            switch (yes_no)
-            {
-            case 1:
-                INTERFULLNAME();
-            case 2:
-                break;
-            }
-
-
-        }
+        cin.ignore(32767, '\n');
+        long long a;
+        
     }
 
     void Print() {
@@ -59,14 +36,17 @@ public:
 
 };
 
-class WRITE {
+
+
+class Write {
 private:
 
     string file_txt = "full_info.txt";
 
 public:
+    
 
-    WRITE() {
+    Write(InterFullName fullname) {
 
         string file_txt = "full_info.txt";
         ofstream fout;
@@ -74,33 +54,61 @@ public:
         fout.open(file_txt, ofstream::app);
 
         if (!fout.is_open()) {
+
             cout << "Ошибка открытия файла!\n";
         }
         else {
+
             cout << "Фаил успешно открыт!\n";
-            fout.write((char*)&file_txt, sizeof(INTERFULLNAME));
+            
+            fout.write((char*)&fullname, sizeof(InterFullName));
         }
         fout.close();
     }
 };
 
+class Read {
+private:
 
+    string file_txt = "full_info.txt";
+
+public:
+    
+    Read(InterFullName fullname)  {
+
+        string file_txt = "full_info.txt";
+        ifstream fin;
+
+        fin.open(file_txt, ifstream::app);
+
+        if (!fin.is_open()) {
+
+            cout << "Ошибка открытия файла!\n";
+        }
+        else {
+        
+            cout << "Фаил успешно открыт!\n";
+            
+            while (fin.read((char*)&fullname, sizeof(InterFullName))) {
+                //getline(fin, file_txt);
+                fullname.Print();
+                cout << endl;
+            }
+        }
+        fin.close();
+    }
+};
 int main()
 {
     setlocale(0, "");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-    
-    INTERFULLNAME fullname;
-    fullname.Print();
-    WRITE write;
+   
+    InterFullName fullname;
+    //fullname.Print();
+    Write write(fullname);
+    Read read(fullname);
 
-    //const int size = 3;
-
-    //INTERFULLNAME arr[size];
-    //arr[0] = fullname;
-    //WRITE write;//(arr[size]);
- 
     return 0;
 
 }
