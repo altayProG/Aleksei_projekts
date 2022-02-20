@@ -18,12 +18,12 @@
     <ClCompile Include="PoneBook.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="InterFullName.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h">
+    <ClInclude Include="InterFullName.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
