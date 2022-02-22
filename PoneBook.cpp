@@ -11,13 +11,16 @@ int main()
     setlocale(0, "");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-   
+
+    
     InterFullName fullname;
+
     //fullname.Print();
     //WriteRead writeread;
     Write write(fullname);
     Read read(fullname);
     //WR wr;
+
     return 0;
 
 }

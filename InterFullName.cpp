@@ -3,19 +3,42 @@
 #include "InterFullName.h"
 using namespace std;
 
+
+
+int Menu::Getm(m) {
+    return ;
+}
+
+Menu::switch (Menu_enum) {
+case 0:
+    InterFullName();
+}
+
 InterFullName::InterFullName() {
 
-    cout << "Inter Name and Surname: \n";
-    cin >> name;
-    cin.ignore(32767, '\n');
-    cout << "Enter pone number (eleven signs): \n";
-    cin >> pone_number;
-    cin.ignore(32767, '\n');
+    cout << "Inter Name: ";
+    cin >> m_name;
+    
+    cout << "Inter surname: ";
+    cin >> m_surname;
+    
+    cout << "Inter age: ";
+    cin >> m_age;
+    
+    cout << "Inter weight: ";
+    cin >> m_weight;
+    
+    cout << "Enter pone number (eleven signs): ";
+    cin >> m_phone_number;
+    cout << "\n";
+    //cin.ignore(32767, '\n');
 }
 
 void InterFullName::Print() {
 
-    cout << "name: " << name << endl << "Pone number: " << pone_number << "\n";
+    cout << "\t\tName and surname: " << m_name << " " << m_surname << ".\n\n" << "\n" << "Age: " << m_age << ".\n"
+        << "Weight: " << m_weight << " кг.\n" << "Phone number: " << m_phone_number << ".\n";
+    cout << "---------------------------\n\n";
 }
 
 WriteRead::WriteRead() {
@@ -91,20 +114,21 @@ Read::Read(InterFullName fullname) {
     }
     else {
 
-        cout << "Фаил успешно открыт!\n";
+        cout << "Фаил успешно открыт!\n" << "\n";
 
         while (fin.read((char*)&fullname, sizeof(InterFullName))) {
 
 
             fullname.Print();
             //getline(fin, file_txt);
-            cout << "\n";
+            //cout << "\n";
         }
     }
     fin.close();
 }
 
 WR::WR() {
+
     string file_txt = "full_info.txt";
     ofstream fout;
     fout.open(file_txt, ofstream::app);
@@ -143,3 +167,10 @@ WR::WR() {
     }
     fin.close();
 }
+
+//OutputOverload::OutputOverload(InterFullName fullname) {
+    
+    //ostream& operator<<(ostream & os, const InterFullName & fullname) {
+       // os << fullname
+    //}
+//}
