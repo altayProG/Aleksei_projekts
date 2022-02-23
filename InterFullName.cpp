@@ -20,6 +20,8 @@ InterFullName::InterFullName() {
     cout << "Enter pone number (eleven signs): ";
     cin >> m_phone_number;
     cout << "\n";
+
+    Write(InterFullName fullname);
 }
 
 void InterFullName::Print() {
