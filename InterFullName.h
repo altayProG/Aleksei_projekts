@@ -5,8 +5,11 @@ using namespace std;
 class InterFullName {
 
  private:
-    string name;
-    long long pone_number;
+     string m_name;
+     string m_surname;
+     short m_weight;
+     short m_age;
+     long long m_phone_number;
 
 public:
 
@@ -14,11 +17,6 @@ public:
     void Print();
 };
 
-class WriteRead {
-
-public:
-    WriteRead();
-};
 
 class Write {
 
@@ -36,10 +34,4 @@ private:
 
 public:
     Read(InterFullName fullname);
-};
-
-class WR {
-
-public:
-    WR();
 };
