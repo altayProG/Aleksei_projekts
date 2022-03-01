@@ -3,6 +3,20 @@
 #include "InterFullName.h"
 using namespace std;
 
+MENU::MENU() {
+    cout << "Inter 1 or 2 : ";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        INTERFULLNAME();
+    case 2:
+        WRITE(INTERFULLNAME fullname);
+    default:
+        break;
+    }
+}
+
 INTERFULLNAME::INTERFULLNAME() {
 
     cout << "Inter Name: ";

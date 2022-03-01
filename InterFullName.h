@@ -2,6 +2,23 @@
 #include <string>
 using namespace std;
 
+class MENU {
+private:
+    int choice;
+public:
+
+    MENU();
+
+    class WRITE {
+
+    private:
+        string file_txt = "full_info.txt";
+
+    public:
+        WRITE(INTERFULLNAME fullname);
+    };
+};
+
 class INTERFULLNAME {
 
  private:
@@ -15,6 +32,14 @@ public:
 
     INTERFULLNAME();
     void Print();
+    class WRITE {
+
+    private:
+        string file_txt = "full_info.txt";
+
+    public:
+        WRITE(INTERFULLNAME fullname);
+    };
 };
 
 
