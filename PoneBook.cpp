@@ -12,11 +12,11 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
    
-    InterFullName fullname;
+    INTERFULLNAME fullname;
     //fullname.Print();
     //WriteRead writeread;
-    Write write(fullname);
-    Read read(fullname);
+    WRITE write(fullname);
+    READ read(fullname);
     //WR wr;
     return 0;
 

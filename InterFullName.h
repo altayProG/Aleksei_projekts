@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-class InterFullName {
+class INTERFULLNAME {
 
  private:
      string m_name;
@@ -13,25 +13,25 @@ class InterFullName {
 
 public:
 
-    InterFullName();
+    INTERFULLNAME();
     void Print();
 };
 
 
-class Write {
+class WRITE {
 
 private:
     string file_txt = "full_info.txt";
 
 public:
-    Write(InterFullName fullname);
+   WRITE(INTERFULLNAME fullname);
 };
 
-class Read {
+class READ {
 
 private:
     string file_txt = "full_info.txt";
 
 public:
-    Read(InterFullName fullname);
+    READ(INTERFULLNAME fullname);
 };

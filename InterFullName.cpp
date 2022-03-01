@@ -3,7 +3,7 @@
 #include "InterFullName.h"
 using namespace std;
 
-InterFullName::InterFullName() {
+INTERFULLNAME::INTERFULLNAME() {
 
     cout << "Inter Name: ";
     cin >> m_name;
@@ -21,17 +21,17 @@ InterFullName::InterFullName() {
     cin >> m_phone_number;
     cout << "\n";
 
-    Write(InterFullName fullname);
+   
 }
 
-void InterFullName::Print() {
+void INTERFULLNAME::Print() {
 
     cout << "\t\tName and surname: " << m_name << " " << m_surname << ".\n\n" << "\n" << "Age: " << m_age << ".\n"
         << "Weight: " << m_weight << ".\n" << "Phone number: " << m_phone_number << ".\n";
     cout << "---------------------------\n\n";
 }
 
-Write::Write(InterFullName fullname) {
+WRITE::WRITE(INTERFULLNAME fullname) {
 
     fstream fs;
     fs.open(file_txt, fstream::in | fstream::out | fstream::app);
@@ -42,12 +42,13 @@ Write::Write(InterFullName fullname) {
 
         cout << "Фаил успешно открыт!\n";
 
-        fs.write((char*)&fullname, sizeof(InterFullName));
+        fs.write((char*)&fullname, sizeof(INTERFULLNAME));
     }
     fs.close();
+    
 }
 
-Read::Read(InterFullName fullname) {
+READ::READ(INTERFULLNAME fullname) {
 
     fstream fs;
     fs.open(file_txt, fstream::in | fstream::out | fstream::app);
@@ -59,7 +60,7 @@ Read::Read(InterFullName fullname) {
 
         cout << "Фаил успешно открыт!\n";
 
-        while (fs.read((char*)&fullname, sizeof(InterFullName))) {
+        while (fs.read((char*)&fullname, sizeof(INTERFULLNAME))) {
 
             fullname.Print();
             
@@ -67,4 +68,5 @@ Read::Read(InterFullName fullname) {
         }
     }
     fs.close();
+    
 }
