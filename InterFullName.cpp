@@ -3,84 +3,100 @@
 #include "InterFullName.h"
 using namespace std;
 
-MENU::MENU() {
-    cout << "Inter 1 or 2 : ";
+
+MENU::MENU()
+
+{
+    INTERFULLNAME fullname;
+    WRITE write;
+    READ read;
+    cout << "enter number menu 1, 2, 3 \n 1 : enter and write\n 2 : read all info";
     cin >> choice;
     switch (choice)
     {
     case 1:
-        INTERFULLNAME();
+        fullname.INTERFULLNAMEf();
+        write.WRITEf(fullname);
     case 2:
-        WRITE(INTERFULLNAME fullname);
+        read.READf(fullname);
+    case 3:
+        
     default:
         break;
     }
+    
 }
 
-INTERFULLNAME::INTERFULLNAME() {
-
+string MENU::INTERFULLNAME::INTERFULLNAMEff() {
     cout << "Inter Name: ";
     cin >> m_name;
 
     cout << "Inter surname: ";
     cin >> m_surname;
+    return m_name, m_surname;
+}
+
+long long MENU::INTERFULLNAME::INTERFULLNAMEfff() {
+    cout << "Enter pone number (eleven signs): ";
+    cin >> m_phone_number;
+    cout << "\n";
+    return 0;
+}
+
+int MENU::INTERFULLNAME::INTERFULLNAMEf() {
 
     cout << "Inter age: ";
     cin >> m_age;
 
     cout << "Inter weight: ";
     cin >> m_weight;
-
-    cout << "Enter pone number (eleven signs): ";
-    cin >> m_phone_number;
-    cout << "\n";
-
-   
+ 
+    return 0;
 }
 
-void INTERFULLNAME::Print() {
+void MENU::INTERFULLNAME::Print() {
 
     cout << "\t\tName and surname: " << m_name << " " << m_surname << ".\n\n" << "\n" << "Age: " << m_age << ".\n"
         << "Weight: " << m_weight << ".\n" << "Phone number: " << m_phone_number << ".\n";
-    cout << "---------------------------\n\n";
+    cout << "---------------------------\n\n"; //int-ы выводятся не корректно возможно, нужно приведение типов
 }
 
-WRITE::WRITE(INTERFULLNAME fullname) {
+void MENU::WRITE::WRITEf(INTERFULLNAME fullname) {
 
     fstream fs;
     fs.open(file_txt, fstream::in | fstream::out | fstream::app);
 
-    if (!fs.is_open()) 
+    if (!fs.is_open())
         cout << "Ошибка открытия файла!\n";
     else {
-
+        
         cout << "Фаил успешно открыт!\n";
 
         fs.write((char*)&fullname, sizeof(INTERFULLNAME));
     }
     fs.close();
-    
+
 }
 
-READ::READ(INTERFULLNAME fullname) {
+void MENU::READ::READf(INTERFULLNAME fullname) {
 
     fstream fs;
     fs.open(file_txt, fstream::in | fstream::out | fstream::app);
 
-    if (!fs.is_open()) 
+    if (!fs.is_open())
 
         cout << "Ошибка открытия файла!\n";
     else {
 
         cout << "Фаил успешно открыт!\n";
-
+        
         while (fs.read((char*)&fullname, sizeof(INTERFULLNAME))) {
 
             fullname.Print();
-            
+
             cout << "\n";
         }
     }
     fs.close();
-    
+
 }
