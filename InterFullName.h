@@ -6,82 +6,39 @@ class MENU {
 private:
     int choice;
 public:
-    class INTERFULLNAME //: public MENU 
+    MENU();
+    class INTERFULLNAME 
     {
     private:
+        string m_name = "";
+        string m_surname = "";
+        int m_weight = 0;
+        int m_age = 0;
+        long long m_phone_number = 0;
         
     public:
-    
-        string m_name;
-        string m_surname;
-        int m_weight;
-        int m_age;
-        long long m_phone_number;
 
-        string INTERFULLNAMEff();
-        int INTERFULLNAMEf();
-        long long INTERFULLNAMEfff();
+        string Enter_name_surname();
+        int Enter_age_weight();
+        long long Enter_phon_number();
         void Print();
 
     };
 
-    class WRITE //: public MENU 
+    class WRITE 
     {
-    public:
-
+    private:
         string file_txt = "full_info.txt";
-        void WRITEf(INTERFULLNAME fullname);
-
-
+    public:
+        void Write(INTERFULLNAME fullname);
     };
 
-    class READ //: public MENU 
+    class READ  
     {
-    public:
-
+    private:
         string file_txt = "full_info.txt";
-        void READf(INTERFULLNAME fullname);
+    public:
+        void Read(INTERFULLNAME fullname);
     };
     
-    MENU();
 };
-
-
-
-//class INTERFULLNAME //: public MENU 
-//{
-//
-//private:
-//    string m_name;
-//    string m_surname;
-//    short m_weight;
-//    short m_age;
-//    long long m_phone_number;
-//
-//public:
-//
-//    INTERFULLNAME();
-//    void Print();
-//    
-//};
-
-
-//class WRITE //: public MENU 
-//{
-//
-//private:
-//    string file_txt = "full_info.txt";
-//    
-//public:
-//    WRITE(INTERFULLNAME fullname);
-//};
-
-//class READ //: public MENU 
-//{
-//
-//private:
-//    string file_txt = "full_info.txt";
-//    
-//public:
-//    READ(INTERFULLNAME fullname);
-//};
