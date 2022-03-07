@@ -7,7 +7,7 @@ private:
     int choice;
 public:
     MENU();
-    class INTERFULLNAME 
+    class Enter 
     {
     private:
         string m_name = "";
@@ -30,7 +30,7 @@ public:
     private:
         string file_txt = "full_info.txt";
     public:
-        void Write(INTERFULLNAME fullname);
+        void Write(Enter fullname);
     };
 
     class READ  
@@ -38,7 +38,7 @@ public:
     private:
         string file_txt = "full_info.txt";
     public:
-        void Read(INTERFULLNAME fullname);
+        void Read(Enter fullname);
     };
     
 };
