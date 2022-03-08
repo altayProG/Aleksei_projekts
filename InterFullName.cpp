@@ -9,8 +9,12 @@ Menu::Menu()
     Enterfullname fullname;
     Write write;
     Read read;
-
-    cout << "enter number menu 1, 2 \n 1 : enter and write\n 2 : read all info\n";
+    Find find;
+    
+    cout << "enter number menu 1, 2, 3.\n " 
+         << "1 : enter and write\n "
+         << "2 : read all info\n "
+         << "3 : find one\n";
     cin >> choice;
 
     switch (choice)
@@ -26,6 +30,11 @@ Menu::Menu()
     case 2:
 
         read.Readf(fullname);
+        break;
+
+    case 3:
+
+        find.Findf(fullname);
         break;
 
     default:
@@ -116,4 +125,35 @@ void Menu::Read::Readf(Enterfullname fullname) {
     }
     fs.close();
 
+}
+
+void Menu::Find::Findf(Enterfullname fullname)
+{
+    fstream fs;
+    fs.open(file_txt, fstream::in | fstream::out | fstream::app);
+
+    if (!fs.is_open())
+
+        cout << "Ошибка открытия файла!\n";
+    else {
+        char find_letter;
+        char ch;
+        cout << "Фаил успешно открыт!\n";
+        cout << "Введите первую букву имени для поиска : ";
+        cin >> find_letter;
+        while (fs.get(ch)) {
+
+            if (ch == find_letter)
+            {
+                while (fs.read((char*)&fullname, sizeof(Enterfullname))) {//ошибка!!!
+
+                    fullname.Print();
+
+                    cout << "\n";
+                }
+            }
+            
+        }
+    }
+    fs.close();
 }

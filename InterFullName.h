@@ -40,7 +40,7 @@ public:
         void Writef(Enterfullname fullname);
 
     };
-
+  
     class Read  
     {
     private:
@@ -52,4 +52,14 @@ public:
         void Readf(Enterfullname fullname);
 
     };
+
+    class Find
+    {
+    private:
+        string file_txt = "full_info.txt";
+    public:
+        void Findf(Enterfullname fullname);
+    };
+
 };
+
