@@ -2,14 +2,19 @@
 #include <string>
 using namespace std;
 
-class MENU {
+class Menu {
 private:
+
     int choice;
+    
 public:
-    MENU();
-    class Enter 
+
+    Menu();
+
+    class Enterfullname 
     {
     private:
+
         string m_name = "";
         string m_surname = "";
         int m_weight = 0;
@@ -22,23 +27,29 @@ public:
         int Enter_age_weight();
         long long Enter_phon_number();
         void Print();
-
     };
 
-    class WRITE 
+    class Write 
     {
     private:
+
         string file_txt = "full_info.txt";
+
     public:
-        void Write(Enter fullname);
+
+        void Writef(Enterfullname fullname);
+
     };
 
-    class READ  
+    class Read  
     {
     private:
+
         string file_txt = "full_info.txt";
+
     public:
-        void Read(Enter fullname);
+
+        void Readf(Enterfullname fullname);
+
     };
-    
 };

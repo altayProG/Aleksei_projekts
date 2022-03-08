@@ -4,30 +4,46 @@
 using namespace std;
 
 
-MENU::MENU()
-
+Menu::Menu()
 {
-    Enter fullname;
-    WRITE write;
-    READ read;
+    Enterfullname fullname;
+    Write write;
+    Read read;
+
     cout << "enter number menu 1, 2 \n 1 : enter and write\n 2 : read all info\n";
     cin >> choice;
+
     switch (choice)
     {
     case 1:
+
         fullname.Enter_name_surname();
         fullname.Enter_age_weight();
         fullname.Enter_phon_number();
-        write.Write(fullname);
-    case 2:
-        read.Read(fullname);   
-    default:
+        write.Writef(fullname);
         break;
+
+    case 2:
+
+        read.Readf(fullname);
+        break;
+
+    default:
+
+        cout << "Error!!! \n Do you thant enter again? yes-1 \n";
+        cin >> choice;
+
+        if (choice == 1)
+            Menu();
+        if (choice != 1)
+            break;
+        
+            
     }
     
 }
 
-string MENU::Enter::Enter_name_surname() {
+string Menu::Enterfullname::Enter_name_surname() {
     cout << "Inter Name: ";
     cin >> m_name;
 
@@ -36,7 +52,7 @@ string MENU::Enter::Enter_name_surname() {
     return m_name, m_surname;
 }
 
-int MENU::Enter::Enter_age_weight() {
+int Menu::Enterfullname::Enter_age_weight() {
 
     cout << "Inter age: ";
     cin >> m_age;
@@ -47,7 +63,7 @@ int MENU::Enter::Enter_age_weight() {
     return 0;
 }
 
-long long MENU::Enter::Enter_phon_number() {
+long long Menu::Enterfullname::Enter_phon_number() {
     cout << "Enter pone number (eleven signs): ";
     cin >> m_phone_number;
     cout << "\n";
@@ -55,14 +71,14 @@ long long MENU::Enter::Enter_phon_number() {
     return 0;
 }
 
-void MENU::Enter::Print() {
+void Menu::Enterfullname::Print() {
 
     cout << "\t\tName and surname: " << m_name << " " << m_surname << ".\n\n" << "\n" << "Age: " << m_age << ".\n"
         << "Weight: " << m_weight << ".\n" << "Phone number: " << m_phone_number << ".\n";
     cout << "---------------------------\n\n"; 
 }
 
-void MENU::WRITE::Write(Enter fullname) {
+void Menu::Write::Writef(Enterfullname fullname) {
 
     fstream fs;
     fs.open(file_txt, fstream::in | fstream::out | fstream::app);
@@ -73,13 +89,13 @@ void MENU::WRITE::Write(Enter fullname) {
         
         cout << "Фаил успешно открыт!\n";
 
-        fs.write((char*)&fullname, sizeof(Enter));
+        fs.write((char*)&fullname, sizeof(Enterfullname));
     }
     fs.close();
 
 }
 
-void MENU::READ::Read(Enter fullname) {
+void Menu::Read::Readf(Enterfullname fullname) {
 
     fstream fs;
     fs.open(file_txt, fstream::in | fstream::out | fstream::app);
@@ -91,7 +107,7 @@ void MENU::READ::Read(Enter fullname) {
 
         cout << "Фаил успешно открыт!\n";
         
-        while (fs.read((char*)&fullname, sizeof(Enter))) {
+        while (fs.read((char*)&fullname, sizeof(Enterfullname))) {
 
             fullname.Print();
 

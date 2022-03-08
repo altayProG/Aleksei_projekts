@@ -11,7 +11,7 @@ int main()
     setlocale(0, "");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-    MENU menu;
+    Menu menu;
     return 0;
 
 }
