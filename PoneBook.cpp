@@ -14,7 +14,9 @@ int main()
     SetConsoleOutputCP(1251);
     
     Menu menu;
-
+    menu.Menuf();
+    
+    
     return 0;
 
 }
