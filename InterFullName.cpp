@@ -3,13 +3,20 @@
 #include "InterFullName.h"
 using namespace std;
 
+Menu::Menu(){}
 
-Menu::Menu()
-{
-    int choice = 0;
+Menu::Menu(int choice)
+    : m_choice(choice){}
+
+void Menu::setMenu(int choice) {
+    m_choice = choice;
 }
 
-void Menu::Menuf() 
+int Menu::getMenu() {
+    return m_choice;
+}
+
+void Menu::Menuf()
 {
     Enterfullname fullname;
     Write write;
@@ -18,9 +25,9 @@ void Menu::Menuf()
         << "1 : enter and write\n "
         << "2 : read all info\n "
         << "3 : find one\n";
-    cin >> choice;
+    cin >> m_choice;
 
-    switch (choice)
+    switch (m_choice)
     {
     case 1:
 
@@ -28,6 +35,13 @@ void Menu::Menuf()
         fullname.Enter_age_weight();
         fullname.Enter_phon_number();
         write.Writef(fullname);
+
+        cout << "Will you whant enter one more time? : 1 , No : 2\n";
+        cin >> m_choice;
+        if (m_choice == 1)
+        {
+            Menuf();
+        }
         break;
 
     case 2:
@@ -43,25 +57,23 @@ void Menu::Menuf()
     default:
 
         cout << "Error!!! \n Do you thant enter again? yes-1 \n";
-        cin >> choice;
+        cin >> m_choice;
 
-        if (choice == 1)
+        if (m_choice == 1)
             Menuf();
-            if (choice != 1)
+            if (m_choice != 1)
                 break;
 
 
     }
 }
 
-Enterfullname::Enterfullname() 
-{
-    string name = " ";
-    string surname = " ";
-    int weight = 0;
-    int age = 0;
-    long long phone_number = 0;
-}
+Enterfullname::Enterfullname() {}
+
+Enterfullname::Enterfullname(string name, string surname, int weight, int age, long long phone_number)
+
+    : m_name(name), m_surname(surname), m_weight(weight),
+    m_age(age), m_phone_number(phone_number){}
 
 void Enterfullname::setName_surname(string name, string surname)
 {
@@ -130,7 +142,7 @@ void Enterfullname::Print() {
     cout << "---------------------------\n\n"; 
 }
 
-void Write::Writef(Enterfullname fullname) {
+void Write::Writef(Enterfullname &fullname) {
 
     fstream fs;
     fs.open(file_txt, fstream::in | fstream::out | fstream::app);
@@ -147,7 +159,7 @@ void Write::Writef(Enterfullname fullname) {
 
 }
 
-void Read::Readf(Enterfullname fullname) {
+void Read::Readf(Enterfullname &fullname) {
 
     fs.open(file_txt, fstream::in | fstream::out | fstream::app);
 
