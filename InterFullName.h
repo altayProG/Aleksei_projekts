@@ -12,8 +12,6 @@ public:
     
     Menu();
     Menu(int choice);
-    void setMenu(int choice);
-    int getMenu();
     void Menuf();
 };
 
@@ -38,22 +36,13 @@ public:
 
     Enterfullname(string name, string surname, int weight, int age, long long phone_number);
      
-    void setName_surname(string name, string surname);
-    string getName_surname();
-
-    void setAge_weight(int weight, int age);
-    int getAge_weight();
-
-    void setPhon_number(long long phone_number);
-    long long getPhon_number();
-
     string Enter_name_surname();
     int Enter_age_weight();
     long long Enter_phon_number();
     void Print();
 };
 
-class Write : public Enterfullname
+class Write 
 {
 private:
 
@@ -77,13 +66,15 @@ public:
 
 };
 
-//class Find
-//{
-//private:
-//    string file_txt = "full_info.txt";
-//    fstream fs;
-//    char find_letter;
-//    char ch;
-//public:
-//    void Findf(Enterfullname fullname);
-//};
+class Find
+{
+private:
+    string file_txt = "full_info.txt";
+    fstream fs;
+    char m_find_letter;
+    char m_ch;
+public:
+    Find();
+    Find(char find_letter, char ch);
+    void Findf(Enterfullname &fullname);
+};

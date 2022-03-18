@@ -8,19 +8,12 @@ Menu::Menu(){}
 Menu::Menu(int choice)
     : m_choice(choice){}
 
-void Menu::setMenu(int choice) {
-    m_choice = choice;
-}
-
-int Menu::getMenu() {
-    return m_choice;
-}
-
 void Menu::Menuf()
 {
     Enterfullname fullname;
     Write write;
     Read read;
+    Find find;
     cout << "enter number menu 1, 2, 3.\n "
         << "1 : enter and write\n "
         << "2 : read all info\n "
@@ -47,11 +40,23 @@ void Menu::Menuf()
     case 2:
 
         read.Readf(fullname);
+        cout << "Out menu 1\n";
+        cin >> m_choice;
+        if (m_choice == 1)
+        {
+            Menuf();
+        }
         break;
 
     case 3:
 
-        //find.Findf(fullname);
+        find.Findf(fullname);
+        cout << "Out menu 1\n";
+        cin >> m_choice;
+        if (m_choice == 1)
+        {
+            Menuf();
+        }
         break;
 
     default:
@@ -63,8 +68,6 @@ void Menu::Menuf()
             Menuf();
             if (m_choice != 1)
                 break;
-
-
     }
 }
 
@@ -75,16 +78,7 @@ Enterfullname::Enterfullname(string name, string surname, int weight, int age, l
     : m_name(name), m_surname(surname), m_weight(weight),
     m_age(age), m_phone_number(phone_number){}
 
-void Enterfullname::setName_surname(string name, string surname)
-{
-    m_name = name;
-    m_surname = surname;
-}
 
-string Enterfullname::getName_surname()
-{
-    return m_name, m_surname;
-}
 
 string Enterfullname::Enter_name_surname() {
     cout << "Inter Name: ";
@@ -95,26 +89,6 @@ string Enterfullname::Enter_name_surname() {
     return m_name, m_surname;
 }
 
-void Enterfullname::setAge_weight(int weight, int age)
-{
-    m_weight = weight;
-    m_age = age;
-}
-
-int Enterfullname::getAge_weight()
-{
-    return m_weight, m_age;
-}
-
-void Enterfullname::setPhon_number(long long phone_number)
-{
-    m_phone_number = phone_number;
-}
-
-long long Enterfullname::getPhon_number()
-{
-    return m_phone_number;
-}
 
 int Enterfullname::Enter_age_weight() {
 
@@ -181,33 +155,35 @@ void Read::Readf(Enterfullname &fullname) {
 
 }
 
-//void Find::Findf(Enterfullname fullname)
-//{
-//    fs.open(file_txt, fstream::in | fstream::out | fstream::app);
-//
-//    if (!fs.is_open())
-//
-//        cout << "Ошибка открытия файла!\n";
-//    else {
-//   
-//        cout << "Фаил успешно открыт!\n";
-//        cout << "Введите первую букву имени для поиска : ";
-//        cin >> find_letter;
-//        while (fs.get(ch)) {
-//
-//            if (ch == find_letter)//выводит с нужного символа но!
-//            {
-//                while (fs.read((char*)&fullname, fs. eof())) {
-//                    string str;
-//                    fs >> str;
-//                    fullname.Print();//инициализация в принт остается первичной 
-//                    //вопрос? как считать из файла нужную часть записанного обьектa?
-//                                     
-//                    
-//                }
-//            }
-//            
-//        }
-//    }
-//    fs.close();
-//}
+Find::Find(){}
+
+Find::Find(char find_letter, char ch)
+    : m_find_letter(find_letter), m_ch(ch){}
+
+void Find::Findf(Enterfullname &fullname)
+{
+    fs.open(file_txt, fstream::in | fstream::out | fstream::app);
+
+    if (!fs.is_open())
+
+        cout << "Ошибка открытия файла!\n";
+    else {
+   
+        cout << "Фаил успешно открыт!\n";
+        cout << "Введите первую букву имени для поиска : ";
+        cin >> m_find_letter;
+        while (fs.get(m_ch)) {
+
+            if (m_ch == m_find_letter)//выводит с нужного символа но!
+            {
+                while (fs.read((char*)&fullname, fs. eof())) {
+                    string str;
+                    fs >> str;
+                    fullname.Print();//инициализация в принт остается первичной 
+                    //вопрос? как считать из файла нужную часть записанного обьектa?
+                }
+            }
+        }
+    }
+    fs.close();
+}
