@@ -4,7 +4,7 @@
 #include <fstream>
 #include <Windows.h>
 #include "InterFullName.h"
-using namespace std;
+
 
 int main()
  {
