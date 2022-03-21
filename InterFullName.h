@@ -5,71 +5,52 @@
 class Menu 
 {
 private:
-
     int m_choice = 0;
-    
 public:
-    
     Menu();
     Menu(int choice);
     void Menuf();
     void Choicef();
-    void exit();
-};
-
-class Enterfullname 
-{
-private:
-
-    std::string m_name = " ";
-    std::string m_surname = " ";
-    int m_weight = 0;
-    int m_age = 0;
-    long long m_phone_number = 0;
-    
-public:
-    
-    Enterfullname();
-    Enterfullname(std::string name, std::string surname, int weight, int age, long long phone_number);
-    std::string Enter_name_surname();
-    int Enter_age_weight();
-    long long Enter_phon_number();
-    void Printf();
 };
 
 class Write 
 {
 private:
-
     std::string file_txt = "full_info.txt";
-
+    std::string m_name;
+    std::string m_surname;
 public:
-
-    void Writef(Enterfullname &fullname);
-
+    Write();
+    Write(std::string name, std::string surname);
+    void Writef();
 };
 
-class Read
+class Read 
 {
 private:
-
     std::string file_txt = "full_info.txt";
     std::fstream fs;
+    std::string m_tempname;
+    std::string m_tempsurname;
 public:
-
-    void Readf(Enterfullname &fullname);
-
+    Read();
+    Read(std::string tempname, std::string tempsurname);
+    void Readf();
+    void Printf(std::string &m_tempname);
+    
 };
 
-//class Find
-//{
-//private:
-//    string file_txt = "full_info.txt";
-//    fstream fs;
-//    string m_find_letter = " ";
-//    char m_ch = ' ';
-//public:
-//    Find();
-//    Find(string find_letter, char ch);
-//    void Findf(Enterfullname &fullname);
-//};
+class Find:public Read
+{
+private:
+    std::string file_txt = "full_info.txt";
+    std::fstream fs;
+    std::string m_tempname;
+    std::string m_find;
+    std::string m_ch;
+public:
+    Find();
+    Find(std::string tempname, std::string find, std::string ch);
+    void Findf();
+    
+};
