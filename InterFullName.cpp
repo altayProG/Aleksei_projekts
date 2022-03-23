@@ -111,8 +111,8 @@ void Read::Printf(std::string &m_tempname){
 
 Find::Find(){}
 
-Find::Find(std::string tempname, std::string find, char ch, std::string temp)
-    : m_tempname(tempname), m_find(find), m_ch(ch), m_temp(temp){}
+Find::Find(std::string tempname, std::string find, std::string ch)
+    : m_tempname(tempname), m_find(find), m_ch(ch){}
 
 void Find::Findf(){
     
@@ -127,9 +127,9 @@ void Find::Findf(){
         std::cout << "Enter 2 letters that fine person : ";
         std::cin >> m_find;
 
-        while (fs.get(m_ch))
+        while (fs.get(m_ch[0]))
         {
-            if (m_ch == m_find[0])
+            if (m_ch[0] == m_find[0])
             {
                 if (!fs.eof()) {
                     fs.seekg(-1, std::ios::cur);

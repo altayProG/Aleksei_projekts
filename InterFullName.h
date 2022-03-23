@@ -47,11 +47,10 @@ private:
     std::fstream fs;
     std::string m_tempname;
     std::string m_find;
-    char m_ch = ' ';
-    std::string m_temp;
+    std::string m_ch;
 public:
     Find();
-    Find(std::string tempname, std::string find, char ch, std::string temp);
+    Find(std::string tempname, std::string find, std::string ch);
     void Findf();
     
 };
