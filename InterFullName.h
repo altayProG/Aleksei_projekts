@@ -40,17 +40,18 @@ public:
     
 };
 
-class Find:public Read
+class Find:protected Read
 {
 private:
     std::string file_txt = "full_info.txt";
     std::fstream fs;
     std::string m_tempname;
     std::string m_find;
-    std::string m_ch;
+    char m_ch = ' ';
+    std::string m_temp;
 public:
     Find();
-    Find(std::string tempname, std::string find, std::string ch);
+    Find(std::string tempname, std::string find, char ch, std::string temp);
     void Findf();
     
 };

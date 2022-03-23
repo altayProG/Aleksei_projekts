@@ -63,9 +63,9 @@ void Write::Writef() {
     fs.open(file_txt, std::fstream::in | std::fstream::out | std::fstream::app);
 
     if (!fs.is_open())
-        std::cout << "Ошибка открытия файла!\n";
+        std::cout << "Error is open!\n";
     else {
-        std::cout << "Фаил успешно открыт!\n";
+        std::cout << "File is open!!\n";
         std::cout << "Enter name:\n";
         std::cin >> m_name;
         fs << m_name << m_surname;
@@ -89,9 +89,9 @@ void Read::Readf() {
     fs.open(file_txt, std::fstream::in | std::fstream::out | std::fstream::app);
 
     if (!fs.is_open())
-        std::cout << "Ошибка открытия файла!\n";
+        std::cout << "Error is open!\n";
     else {
-        std::cout << "Фаил успешно открыт!\n";
+        std::cout << "File is open!\n";
         
         while (!fs.eof()) {
             m_tempname = "";
@@ -111,8 +111,8 @@ void Read::Printf(std::string &m_tempname){
 
 Find::Find(){}
 
-Find::Find(std::string tempname, std::string find, std::string ch)
-    : m_tempname(tempname), m_find(find), m_ch(ch){}
+Find::Find(std::string tempname, std::string find, char ch, std::string temp)
+    : m_tempname(tempname), m_find(find), m_ch(ch), m_temp(temp){}
 
 void Find::Findf(){
     
@@ -124,19 +124,22 @@ void Find::Findf(){
     else {
    
         std::cout << "Фаил успешно открыт!\n";
-        std::cout << "Введите первую букву имени для поиска : ";
-        std::cin >> m_find[0];
+        std::cout << "Enter 2 letters that fine person : ";
+        std::cin >> m_find;
 
-        while (fs.get(m_ch[0]))
+        while (fs.get(m_ch))
         {
-            if (m_ch[0] == m_find[0])
+            if (m_ch == m_find[0])
             {
                 if (!fs.eof()) {
                     fs.seekg(-1, std::ios::cur);
                     getline(fs, m_tempname);
-                    
-                    Printf(m_tempname);
-                    break;     
+               
+                    if ((char)m_tempname[0] == (char)m_find[0] && (char)m_tempname[1] == (char)m_find[1])
+                    {
+                        Printf(m_tempname);
+                         break;
+                    }
                 }
             }
         }
