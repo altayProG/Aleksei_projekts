@@ -10,12 +10,13 @@ int main()
  {
     setlocale(0, "");
 
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-    
-    Menu menu;
+   /* SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);*/
+    Write write;
+    Read read;
+    Find find;
+    Menu menu{ 0 ,write, read, find };
     menu.Menuf();
-    
     
     return 0;
 

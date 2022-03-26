@@ -1,14 +1,19 @@
 #pragma once
 #include <string>
 
-
+class Write;
+class Read;
+class Find;
 class Menu 
 {
 private:
+    Write& write;
+    Read& read;
+    Find& find;
     int m_choice = 0;
 public:
-    Menu();
-    Menu(int choice);
+    Menu() = delete;
+    Menu(int choice, Write& write, Read& read, Find& find);
     void Menuf();
     void Choicef();
 };
@@ -17,6 +22,7 @@ class Write
 {
 private:
     std::string file_txt = "full_info.txt";
+    std::fstream fs;
     std::string m_name;
     std::string m_surname;
 public:
