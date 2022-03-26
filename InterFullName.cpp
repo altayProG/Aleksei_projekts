@@ -2,54 +2,6 @@
 #include <fstream>
 #include "InterFullName.h"
 
-//Menu::Menu() {}//не предоставляет инициализатор для : ссылка член Menu::write 
-              //id подсвечивает под фигурными скобками
-              //что не так?
-
-Menu::Menu(int choice, Write& write, Read& read, Find& find)
-    : m_choice(choice), write(write), read(read), find(find){}
-
-void Menu::Choicef()
-{
-    std::cout << "Will you whant enter one more time? : 1 , No : 2\n";
-    std::cin >> m_choice;
-    if (m_choice == 1)
-        Menuf();
-}
-
-void Menu::Menuf()
-{
-        std::cout << "enter number menu 1, 2, 3.\n "
-        << "1 : enter and write\n "
-        << "2 : read all info\n "
-        << "3 : find one\n";
-    std::cin >> m_choice;
-
-    switch (m_choice)
-    {
-    case 1:
-        write.Writef();
-        Choicef();
-        break;
-    case 2:
-        read.Readf();
-        Choicef();
-        break;
-    case 3:
-        find.Findf();
-        Choicef();
-        break;
-    default:
-
-        std::cout << "Error!!! \n Do you thant enter again? yes-1 \n";
-        std::cin >> m_choice;
-        if (m_choice == 1)
-            Menuf();
-            if (m_choice != 1)
-                break;
-    }
-}
-
 Write::Write() {}
 
 Write::Write(std::string name, std::string surname)
@@ -138,4 +90,48 @@ void Find::Findf(){
         }
     }
     fs.close();
+}
+
+Menu::Menu(int choice, Write& write, Read& read, Find& find)
+    : m_choice(choice), write(write), read(read), find(find) {}
+
+void Menu::Choicef()
+{
+    std::cout << "Will you whant enter one more time? : 1 , No : 2\n";
+    std::cin >> m_choice;
+    if (m_choice == 1)
+        Menuf();
+}
+
+void Menu::Menuf()
+{
+    std::cout << "enter number menu 1, 2, 3.\n "
+        << "1 : enter and write\n "
+        << "2 : read all info\n "
+        << "3 : find one\n";
+    std::cin >> m_choice;
+
+    switch (m_choice)
+    {
+    case 1:
+        write.Writef();
+        Choicef();
+        break;
+    case 2:
+        read.Readf();
+        Choicef();
+        break;
+    case 3:
+        find.Findf();
+        Choicef();
+        break;
+    default:
+
+        std::cout << "Error!!! \n Do you thant enter again? yes-1 \n";
+        std::cin >> m_choice;
+        if (m_choice == 1)
+            Menuf();
+        if (m_choice != 1)
+            break;
+    }
 }
