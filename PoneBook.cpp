@@ -1,20 +1,16 @@
 ﻿#include <iostream>
 #include <string>
-//#include <cstring>
 #include <fstream>
-#include <Windows.h>
 #include "InterFullName.h"
 
 
 int main()
  {
     setlocale(0, "");
-
-   /* SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);*/
+    Print print;
     Write write;
-    Read read;
-    Find find;
+    Read read(" ", " ", "full_info.txt", print);
+    Find find(" ", " ", "full_info.txt", print);
     Menu menu{ 0 ,write, read, find };
     menu.Menuf();
     

@@ -2,15 +2,21 @@
 #include <fstream>
 #include "InterFullName.h"
 
+Print::Print(){}
+
+void Print::Printf(std::string& m_tempname) {
+    std::cout << "\t\t\tName Surname: " << m_tempname << "\n";
+}
+
 Write::Write() {}
 
-Write::Write(std::string name, std::string surname)
-        : m_name(name), m_surname(surname){}
+Write::Write(std::string name, std::string surname, std::string file_txt)
+        : m_name(name), m_surname(surname), m_file_txt(file_txt){}
 
 void Write::Writef() {
     std::fstream fs;
 
-    fs.open(file_txt, std::fstream::in | std::fstream::out | std::fstream::app);
+    fs.open(m_file_txt, std::fstream::in | std::fstream::out | std::fstream::app);
 
     if (!fs.is_open())
         std::cout << "Error is open!\n";
@@ -27,14 +33,12 @@ void Write::Writef() {
 
 }
 
-Read::Read(){}
-
-Read::Read(std::string tempname, std::string tempsurname)
-        : m_tempname(tempname), m_tempsurname(tempsurname){}
+Read::Read(std::string tempname, std::string tempsurname, std::string file_txt, Print& print)
+        : m_tempname(tempname), m_tempsurname(tempsurname), m_file_txt(file_txt), print(print) {}
 
 void Read::Readf() {
     
-    fs.open(file_txt, std::fstream::in | std::fstream::out | std::fstream::app);
+    fs.open(m_file_txt, std::fstream::in | std::fstream::out | std::fstream::app);
 
     if (!fs.is_open())
         std::cout << "Error is open!\n";
@@ -44,7 +48,7 @@ void Read::Readf() {
         while (!fs.eof()) {
             m_tempname = "";
             getline(fs, m_tempname);
-            Printf(m_tempname);
+            print.Printf(m_tempname);
             
             std::cout << "\n";
         }
@@ -53,14 +57,8 @@ void Read::Readf() {
 
 }
 
-void Read::Printf(std::string &m_tempname){
-    std::cout << "\t\t\tName Surname: " << m_tempname << "\n";
-}
-
-Find::Find(){}
-
-Find::Find(std::string tempname, std::string find, std::string ch)
-    : m_tempname(tempname), m_find(find), m_ch(ch){}
+Find::Find(std::string tempname, std::string find, std::string ch, Print& print)
+    : m_tempname(tempname), m_find(find), m_ch(ch), print(print) {}
 
 void Find::Findf(){
     
@@ -78,12 +76,14 @@ void Find::Findf(){
             if (m_ch[0] == m_find[0])
             {
                 if (!fs.eof()) {
+
                     fs.seekg(-1, std::ios::cur);
                     getline(fs, m_tempname);
+
                     if ((char)m_tempname[0] == (char)m_find[0] && (char)m_tempname[1] == (char)m_find[1])
                     {
-                         Printf(m_tempname);
-                           //break;
+                         print.Printf(m_tempname);
+                          
                     }
                 }
             }
