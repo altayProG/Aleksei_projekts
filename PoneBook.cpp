@@ -8,10 +8,12 @@ int main()
  {
     setlocale(0, "");
     Print print;
+    Print picture;
     Write write;
     Read read(" ", " ", "full_info.txt", print);
     Find find(" ", " ", "full_info.txt", print);
-    Menu menu{ 0 ,write, read, find };
+    Del del(" ", " ", "full_info.txt", print);
+    Menu menu{ 0 ,write, read, find, del };
     menu.Menuf();
     
     return 0;

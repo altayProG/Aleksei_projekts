@@ -7,7 +7,7 @@ public:
     void Printf(std::string& m_tempname);
 };
 
-class Write
+class Write 
 {
 private:
     std::string m_file_txt = "full_info.txt";
@@ -48,15 +48,32 @@ public:
 
 };
 
+class Del
+{
+private:
+    std::string m_file_txt = "full_info.txt";
+    std::string m_del_file_txt = "del_file.txt";
+    Print& print;
+    std::fstream fs;
+    std::fstream fdel;
+    std::string m_tempname;
+    std::string m_find;
+    std::string m_ch;
+public:
+    Del(std::string tempname, std::string find, std::string ch, Print& print);
+    void Delf();
+};
+
 class Menu 
 {
 private:
     Write& write;
     Read& read;
     Find& find;
+    Del& del;
     int m_choice = 0;
 public:
-    Menu(int choice, Write& write, Read& read, Find& find);
+    Menu(int choice, Write& write, Read& read, Find& find, Del& del);
     void Menuf();
     void Choicef();
 };
