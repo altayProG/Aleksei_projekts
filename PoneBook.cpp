@@ -7,14 +7,20 @@
 int main()
  {
     setlocale(0, "");
-    Print print;
-    Print picture;
+    
     Write write;
-    Read read(" ", " ", "full_info.txt", print);
-    Find find(" ", " ", "full_info.txt", print);
-    Del del(" ", " ", "full_info.txt", print);
-    Menu menu{ 0 ,write, read, find, del };
-    menu.Menuf();
+    Read read;
+    Find find;
+    Del del;
+    Print print;
+    Menu menu(0);
+    menu.Choicehuman(write);
+    menu.Choicehuman(read);
+    menu.Choicehuman(find);
+    menu.Choicehuman(del);
+    menu.Choicehuman(print);
+    
+    
     
     return 0;
 

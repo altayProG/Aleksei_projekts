@@ -1,81 +1,111 @@
 #pragma once
 #include <string>
-class Print
+
+class Database
 {
 public:
-    Print();
-    void Printf(std::string& m_tempname);
+    void virtual Writehuman() = 0;
+    void virtual Readhuman() = 0;
+    void virtual Findhuman() = 0;
+    void virtual Delhuman() = 0;
+    void virtual Printhuman(std::string m_tempname) = 0;
+    
 };
 
-class Write 
-{
-private:
-    std::string m_file_txt = "full_info.txt";
-    std::fstream fs;
-    std::string m_name;
-    std::string m_surname;
-public:
-    Write();
-    Write(std::string name, std::string surname, std::string file_txt);
-    void Writef();
-};
-
-class Read
-{
-private:
-    std::string m_file_txt = "full_info.txt";
-    Print& print;
-    std::fstream fs;
-    std::string m_tempname;
-    std::string m_tempsurname;
-public:
-    Read(std::string tempname, std::string tempsurname, std::string file_txt, Print& print);
-    void Readf();
-};
-
-class Find 
-{
-private:
-    std::string file_txt = "full_info.txt";
-    Print& print;
-    std::fstream fs;
-    std::string m_tempname;
-    std::string m_find;
-    std::string m_ch;
-public:
-    Find(std::string tempname, std::string find, std::string ch, Print& print);
-    void Findf();
-
-};
-
-class Del
+class Write : public Database
 {
 private:
     std::string m_file_txt = "full_info.txt";
     std::string m_del_file_txt = "del_file.txt";
-    Print& print;
+    std::fstream fs;
+    std::fstream fdel;
+    std::string m_find;
+    std::string m_name;
+    std::string m_surname;
+    std::string m_tempname;
+    
+public:
+    
+    void Writehuman()override;
+    void Readhuman()override;
+    void Findhuman()override;
+    void Delhuman()override;
+    void Printhuman(std::string m_tempname)override;
+
+};
+
+class Read : public Write
+{
+private:
+    std::string m_file_txt = "full_info.txt";
+    std::fstream fs;
+    std::string m_tempname;
+public:
+   
+    void Writehuman()override;
+    void Readhuman()override;
+    void Findhuman()override;
+    void Delhuman()override;
+    void Printhuman(std::string m_tempname)override;
+};
+
+class Find : public Read
+{
+private:
+    std::string file_txt = "full_info.txt";
+    std::fstream fs;
+    std::string m_tempname;
+    std::string m_find;
+    
+public:
+    
+    void Writehuman()override;
+    void Readhuman()override;
+    void Findhuman()override;
+    void Delhuman()override;
+    void Printhuman(std::string m_tempname)override;
+
+};
+
+class Del : public Find
+{
+private:
+    std::string m_file_txt = "full_info.txt";
+    std::string m_del_file_txt = "del_file.txt";
     std::fstream fs;
     std::fstream fdel;
     std::string m_tempname;
     std::string m_find;
-    std::string m_ch;
 public:
-    Del(std::string tempname, std::string find, std::string ch, Print& print);
-    void Delf();
+   
+    void Writehuman()override;
+    void Readhuman()override;
+    void Findhuman()override;
+    void Delhuman()override;
+    void Printhuman(std::string m_tempname)override;
 };
 
-class Menu 
+class Menu /*: public Del*/
 {
 private:
-    Write& write;
-    Read& read;
-    Find& find;
-    Del& del;
     int m_choice = 0;
 public:
-    Menu(int choice, Write& write, Read& read, Find& find, Del& del);
-    void Menuf();
-    void Choicef();
+    Menu(int m_choice);
+    void Choicehuman(Database& database);
+    
+    
+  
+};
+
+class Print : public Del
+{
+public:
+    
+    void Writehuman()override;
+    void Readhuman()override;
+    void Findhuman()override;
+    void Delhuman()override;
+    void Printhuman(std::string m_tempname)override;
 };
 
 
